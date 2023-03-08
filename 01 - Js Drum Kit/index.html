@@ -13,8 +13,8 @@
 
 <body>
   <section class="section">
-    <div class="container container-center"> 
-      <h1 class="heading">Drum Kit</h1> 
+    <div class="container container-center heading"> 
+      <h1 class="playing">Drum Kit</h1> 
     </div>
   </section>
 
@@ -60,11 +60,21 @@
                     <kbd>L</kbd> <br>
                     <span class="sound">tink</span>
                   </div>
-                </div>   
-                
+
+                </div>     </div>               
+              </section>
+ 
+              <section>
+                               
+                <div class="container container-center"> 
+                  <div class="inputbox">
+                    <input type="text" placeholder="Tap to open keyboard on mobile device" > 
+                  </div>                  
+                </div>
+
               </section>
 
-            </div> 
+            
         </div>  
     </div>
 
@@ -98,20 +108,19 @@
             
         window.addEventListener('keydown',  playSound);
 
-        // Play on click
-        
-        function clickedKey (e) {
-          // console.log(e.target)
-          let audio = document.querySelector(`audio[data-key]`);
-          let key = document.querySelector(`.key[data-key]`) ;
-            console.log(audio);
-            audio.play();
-            console.log(key);
-            key.classList.add('playing');          
-        }
+        // Play on click - not working        
+        // function clickedKey (e) {
+        //   // console.log(e.target)
+        //   let audio = document.querySelector(`audio[data-key]`);
+        //   let key = document.querySelector(`.key[data-key]`) ;
+        //     console.log(audio);
+        //     audio.play();
+        //     console.log(key);
+        //     key.classList.add('playing');          
+        // }
 
-        const manualKey1 = document.querySelectorAll(".key");
-        manualKey1.forEach(manualKey => { manualKey.addEventListener('click', clickedKey )});
+        // const manualKey1 = document.querySelectorAll(".key");
+        // manualKey1.forEach(manualKey => { manualKey.addEventListener('click', clickedKey )});
 
         // Remove Transition
 
