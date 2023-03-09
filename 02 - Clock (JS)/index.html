@@ -22,6 +22,12 @@
       <div class="container">
         <p id="digital-clock">Time</p>
       </div>
+      <div class="container">
+        <p id="day">Time</p>
+      </div>
+      <div class="container">
+        <p id="dayOfWeek">Time</p>
+      </div>
     </section>
 
     <style>
@@ -148,10 +154,22 @@
         }
         document.getElementById("digital-clock").innerHTML =
           hour + ":" + mins + ":" + seconds + " " + amOrPM;
-        console.log(hour + ":" + mins + ":" + seconds + " " + amOrPM);
-      }
+        // console.log(hour + ":" + mins + ":" + seconds + " " + amOrPM);
+        document.getElementById("day").innerHTML =
+        now.getDate() +"-"+ now.getMonth()+"-"+ now.getFullYear();
 
+        let dayOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+        document.getElementById("dayOfWeek").innerHTML =
+        dayOfTheWeek[now.getDay()];
+
+        // console.log(now)
+        console.log(now.getDate() +"-"+ now.getMonth()+"-"+ now.getFullYear()  )
+      }
       setInterval(displayTime, 1000);
+
+      
+
     </script>
   </body>
 </html>
