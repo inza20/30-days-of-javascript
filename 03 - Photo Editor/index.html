@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Editor</title>
+</head>
+<body>
+    <section>
+    <h2>Photo Editor <span class="colored">JS</span> </h2>
+    <div class="controls">
+        <div class="col-md-4">
+            <label for="spacing"> Frame : </label>
+            <input type="range" name="spacing" min="0" max="200" value="10" data-sizing="px" >
+            <!-- // created attribute data-sizing to update css with 'px' suffix  -->
+        </div>
+        <!-- <div class="col-md-4">
+            <label for="brightness"> Bright :  </label>
+            <input type="range" name="brightness" min="0" max="20" value="1"  > -->
+        <!-- </div> -->
+        <div class="col-md-4">
+            <label for="blur"> Blur :  </label>
+            <input type="range" name="blur" min="0" max="20" value="0" data-sizing="px" >
+        </div>
+        <div class="col-md-4">
+            <label for="base"> Frame Color : </label>
+            <input type="color" name="base" value="#ffc600" >
+        </div>
+    </div>
+    </section>
+
+    <section>
+        <img class="img-test" src="https://images.unsplash.com/photo-1471879832106-c7ab9e0cee23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80" alt="image">
+    </section>
+
+    <style>
+        :root {
+            --base : #ffc600;
+            --spacing : 10px;
+            --blur: 10px;
+            /* --bright: 1; */
+        }
+
+        body{
+            background-color: rgb(45, 5, 132);
+            display: flex;
+            color: white;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        section{
+            margin: .5rem auto;
+        }
+
+        .colored {
+            color: var(--base);
+        }
+
+        img{
+            margin: 1rem auto;
+            height: 300px;
+            padding: var(--spacing);
+            background: var(--base);
+            filter: blur(var(--blur));
+            /* filter: brightness(var(--bright)); */
+        }
+    </style>
+
+    <script>
+        const inputs = document.querySelectorAll('.controls input');
+        // This will return a nodeList on which we'll use forEach method
+        
+        function handleUpdate(){
+            // console.log(this.value);
+            const suffix = this.dataset.sizing || '';
+            // console.log(suffix);
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);            
+        }
+
+        inputs.forEach( input => input.addEventListener('change', handleUpdate))
+        inputs.forEach( input => input.addEventListener('mousemove', handleUpdate))
+
+    </script>
+
+
+    
+</body>
+</html>
