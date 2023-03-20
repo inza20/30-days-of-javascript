@@ -16,19 +16,30 @@ body {
     align-items: center;
 }
 
-.container-fluid .box-container {
+ h1 .title{
+    color: aliceblue;
+    /* margin:   10rem auto;
+    padding: 2rem;
+    font-size: 5rem; */
+}
+
+.box-container{
+    margin :  20px 20px;
+    width: min-content;
+    
+}
+
+ .box-container {
     display:flex;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap:15px;
+    
 }
 
-.container-fluid .box-container .container{
-
-}
 
 .container{
-    width: 250px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     perspective: 1000px;
 }
 
