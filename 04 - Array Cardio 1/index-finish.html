@@ -45,19 +45,53 @@
     });
     console.table(fifteen);
 
+    // OR : 
+    const Fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600 ))
+    console.table(fifteen);
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const fullNames = inventors.map(inventor => inventor.first + ' ' + inventor.last);
+    console.log(fullNames);
+
+    //OR :
+    const FullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+    console.log(FullNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const oldest = inventors.sort( (a , b) => {
+      if(a.year > b.year) {
+        return 1;
+      } else { return -1; }
+    });
+    console.table(oldest);
+
+    // OR:
+    const Oldest = inventors.sort ( (a,b)  => (a.year > b.year) ? 1 : -1 );
+    console.table(Oldest);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const together = inventors.reduce( (total, investor) => {
+      return total + (investor.passed - investor.year);
+    }, 0 ); // array element 0 is used as initial value, and the iteration starts from array element 1
+    console.log( "years the inventors lived all together: " +  together);
 
     // 5. Sort the inventors by years lived
+    const years = inventors.sort( (a,b) => {
+      const lastGuy = a.passed - a.years; // calculating age of person1
+      const nextGuy = b.passed - b.years;
+      return (lastGuy > nextGuy ? 1 : -1 );
+    } );
+    console.table(years);
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    const category = document.querySelector('.mw-category');
+    const links = Array.from(category.querySelectorAll('a'));
+    const de = links.map(link => link.textContent);
 
 
     // 7. sort Exercise
