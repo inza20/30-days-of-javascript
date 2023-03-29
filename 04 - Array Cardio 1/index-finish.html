@@ -76,7 +76,7 @@
     const together = inventors.reduce( (total, investor) => {
       return total + (investor.passed - investor.year);
     }, 0 ); // array element 0 is used as initial value, and the iteration starts from array element 1
-    console.log( "years the inventors lived all together: " +  together);
+    console.log( "4. years the inventors lived all together: " +  together);
 
     // 5. Sort the inventors by years lived
     const years = inventors.sort( (a,b) => {
@@ -89,18 +89,48 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-    const category = document.querySelector('.mw-category');
-    const links = Array.from(category.querySelectorAll('a'));
-    console.log(links)
-    const de = links.map(link => link.textContent);
+
+    // Type the following code in the console of above linked webpage to run it. It won't run in Array Cardio project console.
+
+    // const category = document.querySelector('.mw-category');
+    // // To convert a list / Node list into array , use [... ] or Array.from :
+    // // const links1 = [...category.querySelectorAll('a')]; 
+    // // OR
+    // const links = Array.from(category.querySelectorAll('a')); 
+    // const de = links.map(link => link.textContent).filter(streetName => streetName.includes('de')) ;
+    // console.log(de);
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alpha = people.sort((a,b) => {
+      // console.log(a);
+      // // a & b are the 2 names to be compared while sorting
+      // const parts = a.split(', '); 
+      // // this wil put the 1st and 2nd name in array , to avoid returning it in array and instead in respectivve variables , use destructuring:
+      const [aLast , aFirst] = a.split(', ');
+      // console.log(aLast, aFirst);
+      const [bLast , bFirst] = b.split(', ');
+      return aLast > bLast ? 1 : -1;
+    })
+    console.log(alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const transportation = data.reduce((obj, item) => {
+      // console.log(item);
+      // return obj;
+      // // In reduce(), first we start with a blank object and then increment it with loop :
+      if (!obj[item]){      // Checking whteher the key is present or not
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;      
+    }, {});    
+
+    console.log(transportation);
 
   </script>
 </body>
