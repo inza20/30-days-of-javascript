@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search List</title>
+  <meta charset="UTF-8">
+  <title> Search List👀</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="icon" href="https://fav.farm/🔥" />
 </head>
 <body>
-    
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+// // alternative ways to fetch data, jquery ($.getJSON()) or axios, but here we'll use fetch() api : newly built-in feature in the browser
+
+let cities = [];
+// const prom = fetch(endpoint);
+// console.log(prom);
+// // this will return a promise, not the data. To collect and return the data, use .then().
+
+// fetch(endpoint).then(blob => console.log(blob));
+fetch(endpoint)
+.then(blob => blob.json())
+// .then(data => console.log(data) )     
+// // returns data
+// .then(data => cities.push(data));    
+// // to put above data into array cities[] , but the array will be nested - cities = [Array[1000], 1,2, 3]
+.then(data => cities.push(...data));  
+// // spread (...) to remove nested Array[1000], and fill in 1000 different cities 
+console.log(cities);
+
+// Function that'll create a subset of above arrays while typing and show the results
+function findMatches(wordToMatch, cities) {
+    return cities.filter(place => {
+        return place.city.match()
+    })
+}
+
+
+</script>
 </body>
 </html>
