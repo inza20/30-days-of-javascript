@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title> Search List👀</title>
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
 <body>
@@ -39,10 +39,40 @@ console.log(cities);
 // Function that'll create a subset of above arrays while typing and show the results
 function findMatches(wordToMatch, cities) {
     return cities.filter(place => {
-        return place.city.match()
-    })
+        const regex = new RegExp( wordToMatch, 'gi' );  
+        // // gi means replace globally and insensitive to lower/uppercase
+        return place.city.match(regex) || place.state.match(regex)
+    });
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function displayMatches() {
+    // console.log(this.value);
+    const matchArray = findMatches(this.value, cities);
+    // console.log(matchArray) 
+    const html = matchArray.map(place => {
+        // // replace the matching places with an html <span> with innerhtml = palce.city or place.state :
+        const regex = new RegExp(this.value, 'gi');
+        const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+        const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+        return `
+        <li>
+            <span class="name">${cityName}, ${stateName}</span>
+            <span class="population">${numberWithCommas(place.population)}</span>
+        </li>
+        `;
+    }).join('');
+    suggestions.innerHTML = html;
+}
+
+const searchInput = document.querySelector('.search');        // for search box
+const suggestions = document.querySelector('.suggestions');  // for dropdown ul
+
+// searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
 
 </script>
 </body>
